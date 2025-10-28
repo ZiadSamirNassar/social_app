@@ -1,7 +1,7 @@
 import  { NextFunction, Request, Response, type Express } from "express";
 import { connectDB } from "./DB";
 import * as routes from "./modules";
-import { NotFoundError } from "./utils";
+import { InvalidURLError } from "./utils";
 import { globalErrorHandler } from "./utils";
 
 export const pootstrap = ( app: Express, express: any) => {
@@ -13,11 +13,13 @@ export const pootstrap = ( app: Express, express: any) => {
     app.use("/auth", routes.authRouter);
     app.use("/post", routes.postRouter);
     app.use("/comment", routes.commentRouter);
+    app.use("/user", routes.userRouter);
+    app.use("/chat", routes.chatRouter);
 
     //invalid url handling
     app.use( "/{*dumy}", (req, res, next) => {
         console.log("Invalid URL");
-        throw new NotFoundError(" Hi there 👋, I'm Ziad Nassar, And this Invalid URL 🚨");
+        throw new InvalidURLError(" Hi there 👋, I'm Ziad Nassar, And this Invalid URL 🚨");
     })
 
     //global error handler

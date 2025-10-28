@@ -43,7 +43,8 @@ export const schema = new Schema<IUser>( {
         enum: USER_AGENT,
         default: USER_AGENT.LOCAL 
     },
-    
+    friends:[{type: Schema.Types.ObjectId,ref: "User"}]
+     
 }, {timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true }});
 
 schema.pre("save", async function(next) {

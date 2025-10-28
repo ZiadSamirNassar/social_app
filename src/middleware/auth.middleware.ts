@@ -27,7 +27,11 @@ export const isAuthenticated = async (req: Request, res: Response, next: NextFun
 
     const userId = decoded.id;
 
-    const user = await userRepository.findOne({_id: userId});
+    const user = await userRepository.findOne(
+        {_id: userId},
+        {password: 0,otp: 0,otpExpiry: 0},
+        {populate:[{path:"friends",select:"name"}]}
+    );
 
     if(!user){
         throw new UnauthorizedError("Unauthorized, User not found");

@@ -13,6 +13,7 @@ export interface IUser {
     isVerified: boolean;
     role: SYS_ROLE;
     agent: USER_AGENT;
+    friends: ObjectId[];
 }
 
 export interface IToken {
@@ -51,4 +52,18 @@ export interface IComment {
     content: string;
     reactions: IReaction[];
     attachment?: IAttachments;
+}
+
+export interface IChat {
+    _id: ObjectId;
+    users: ObjectId[];
+    messages: ObjectId[];
+}
+
+export interface IMessage {
+    _id: ObjectId;
+    senderId: ObjectId;
+    content:string,
+    attachments?:ObjectId[],
+    reactions:IReaction[]
 }

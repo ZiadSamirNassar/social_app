@@ -15,6 +15,7 @@ export const pootstrap = ( app: Express, express: any) => {
     app.use("/comment", routes.commentRouter);
     app.use("/user", routes.userRouter);
     app.use("/chat", routes.chatRouter);
+    app.use("/graphql", routes.graphqlRouter);
 
     //invalid url handling
     app.use( "/{*dumy}", (req, res, next) => {
